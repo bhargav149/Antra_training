@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="signup-form">
+        <h2>Sign Up</h2>
+        <form action="/submit-your-form-handler" method="POST">
+            <div class="input-group">
+                <input type="text" placeholder="First Name" name="firstName" required><input type="text" placeholder="Last Name" name="lastName" required>
+            </div>
+            <div class="input-group">
+                <input type="tel" placeholder="Mobile No." name="mobile" required>
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder="Email Address" name="email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" name="password" required>
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Confirm Password" name="confirmPassword" required>
+            </div>
+            <div class="input-group checkbox">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">I Agree to the Terms and Conditions</label>
+            </div>
+            <div class="input-group">
+                <button type="submit">Register</button><button type="button">Sign In</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
