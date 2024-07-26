@@ -50,7 +50,18 @@ class GameController {
         this.view = view;
         this.score = 0; // Initialize score
         this.isGameActive = false;
+        this.timer = 30; // Initialize timer
         this.attachEventListeners();
+    }
+
+    startTimer() {
+        this.timerId = setInterval(() => {
+            this.timer -= 1;
+            document.getElementById('time-left').innerText = `Time Left: ${this.timer}`;
+            if (this.timer <= 0) {
+                this.stopGame(true);
+            }
+        }, 1000);
     }
 
     toggleGame() {
@@ -60,6 +71,7 @@ class GameController {
             GameView.clearAllMoles();
             this.isGameActive = false;
         } else {
+            this.startTimer();
             this.model.intervalId = setInterval(() => {
                 if (this.model.getActiveMolesCount() < 3) {
                     const id = this.model.spawnMole();
@@ -71,6 +83,18 @@ class GameController {
             this.isGameActive = true;
         }
     }
+
+    stopGame(isGameOver) {
+        clearInterval(this.model.intervalId);
+        clearInterval(this.timerId);
+        this.model.clearMoles();
+        GameView.clearAllMoles();
+        this.isGameActive = false;
+        if (isGameOver) {
+            alert("Time is Over!");
+        }
+    }
+
 
     updateScore() {
         document.getElementById('score-count').innerText = `Your total score is ${this.score}`;
