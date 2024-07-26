@@ -49,9 +49,18 @@ class GameController {
         this.model = model;
         this.view = view;
         this.score = 0; // Initialize score
-        this.isGameActive = false;
         this.timer = 30; // Initialize timer
+        this.isGameActive = false;
         this.attachEventListeners();
+    }
+
+    resetGame() {
+        this.score = 0; // Reset score
+        this.timer = 30; // Reset timer
+        this.model.clearMoles(); // Clear any moles from the board
+        GameView.clearAllMoles(); // Update the view to reflect no moles
+        document.getElementById('score-count').innerText = `Your total score is ${this.score}`;
+        document.getElementById('time-left').innerText = `Time Left: ${this.timer}`;
     }
 
     startTimer() {
@@ -66,11 +75,9 @@ class GameController {
 
     toggleGame() {
         if (this.isGameActive) {
-            clearInterval(this.model.intervalId);
-            this.model.clearMoles();
-            GameView.clearAllMoles();
-            this.isGameActive = false;
+            this.stopGame(false);
         } else {
+            this.resetGame(); // Reset the game before starting
             this.startTimer();
             this.model.intervalId = setInterval(() => {
                 if (this.model.getActiveMolesCount() < 3) {
@@ -87,14 +94,11 @@ class GameController {
     stopGame(isGameOver) {
         clearInterval(this.model.intervalId);
         clearInterval(this.timerId);
-        this.model.clearMoles();
-        GameView.clearAllMoles();
         this.isGameActive = false;
         if (isGameOver) {
             alert("Time is Over!");
         }
     }
-
 
     updateScore() {
         document.getElementById('score-count').innerText = `Your total score is ${this.score}`;
@@ -107,13 +111,14 @@ class GameController {
                 if (this.model.gameBoard[id].hasMole) {
                     this.model.removeMole(id);
                     GameView.hideMole(id);
-                    this.score += 1; // Increment score
-                    this.updateScore(); // Update the score display
+                    this.score += 1;
+                    this.updateScore();
                 }
             });
         });
     }
 }
+
 
 // Setup when the document is ready
 document.addEventListener('DOMContentLoaded', function() {
