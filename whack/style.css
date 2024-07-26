@@ -5,12 +5,9 @@ body, html {
 }
 
 header {
+    margin-top: auto;
     text-align: center;
-    margin-bottom: 20px;
-}
-
-h1 {
-    margin: 0;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -22,19 +19,21 @@ h1 {
     width: 100%;
 }
 
-.score-container{
-    flex: 1;
+.info-container {
+    display: flex; /* Aligns children (score and time) in a row */
+    justify-content: space-around; /* Spreads out children evenly */
+    width: 200%; /* Ensures the container spans the full width of its parent */
+}
+
+.score-container, .time-container {
+    flex: 1; /* Each takes equal width */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .time-container{
-    flex: 1;
     align-self: flex-end;
-    display: flex;
-    align-items: center;
-    justify-content:right;
 }
 
 
@@ -75,4 +74,11 @@ button {
 .mole {
     background-image: url('mole.jpg');
     background-size: cover;
+}
+
+.snake {
+    background-image: url('snake.jpg');
+    background-size: contain; /* Ensures the image fits entirely inside the content box */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; 
 }
