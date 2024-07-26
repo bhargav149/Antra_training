@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="whack.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Whack-a-Mole</h1>
+            <div class="time-container">
+                <p id="time-left">Time Left: 60</p>
+            </div>
+            <div class="score-container">
+                <p id="score-count">Your total score is 0</p>
+            </div>
+            <div class="start">
+                <button onclick="window.gameController.toggleGame()">Start Game!</button>
+            </div>
+        </header>
+        
+        <div class="game-board">
+            <div class="block" id ="block-0"><div class="circle"></div></div>
+            <div class="block" id ="block-1"><div class="circle"></div></div>
+            <div class="block" id ="block-2"><div class="circle"></div></div>
+            <div class="block" id ="block-3"><div class="circle"></div></div>
+            <div class="block" id ="block-4"><div class="circle"></div></div>
+            <div class="block" id ="block-5"><div class="circle"></div></div>
+            <div class="block" id ="block-6"><div class="circle"></div></div>
+            <div class="block" id ="block-7"><div class="circle"></div></div>
+            <div class="block" id ="block-8"><div class="circle"></div></div>
+            <div class="block" id ="block-9"><div class="circle"></div></div>
+            <div class="block" id ="block-10"><div class="circle"></div></div>
+            <div class="block" id ="block-11"><div class="circle"></div></div>
+        </div>
+    </div>
+    
+</body>
+</html>
