@@ -5,6 +5,7 @@ class GameModel {
         this.intervalId = null;
     }
 
+    // Spawns a mole on a random free block
     spawnMole() {
         const freeBlocks = this.gameBoard.filter(block => !block.hasMole);
         if (freeBlocks.length > 0) {
@@ -15,14 +16,17 @@ class GameModel {
         return null;
     }
 
+    // Clears all moles from the game board
     clearMoles() {
         this.gameBoard.forEach(block => block.hasMole = false);
     }
 
+    // Removes a mole from the game board based on its id
     removeMole(id) {
         this.gameBoard[id].hasMole = false;
     }
 
+    // Returns the count of active moles on the game board
     getActiveMolesCount() {
         return this.gameBoard.filter(block => block.hasMole).length;
     }
@@ -30,14 +34,17 @@ class GameModel {
 
 // View - Handles the UI updates
 class GameView {
+    // Displays a mole on the specified block
     static displayMole(id) {
         document.getElementById(`block-${id}`).classList.add("mole");
     }
 
+    // Hides a mole from the specified block
     static hideMole(id) {
         document.getElementById(`block-${id}`).classList.remove("mole");
     }
 
+    // Clears all moles from the UI
     static clearAllMoles() {
         document.querySelectorAll('.mole').forEach(elem => elem.classList.remove('mole'));
     }
@@ -54,6 +61,7 @@ class GameController {
         this.attachEventListeners();
     }
 
+    // Resets the game state
     resetGame() {
         this.score = 0; // Reset score
         this.timer = 30; // Reset timer
@@ -63,6 +71,7 @@ class GameController {
         document.getElementById('time-left').innerText = `Time Left: ${this.timer}`;
     }
 
+    // Starts the game timer
     startTimer() {
         this.timerId = setInterval(() => {
             this.timer -= 1;
@@ -73,6 +82,7 @@ class GameController {
         }, 1000);
     }
 
+    // Toggles the game state between active and inactive
     toggleGame() {
         if (this.isGameActive) {
             this.stopGame(false);
@@ -91,6 +101,7 @@ class GameController {
         }
     }
 
+    // Stops the game and displays a game over message if specified
     stopGame(isGameOver) {
         clearInterval(this.model.intervalId);
         clearInterval(this.timerId);
@@ -100,10 +111,12 @@ class GameController {
         }
     }
 
+    // Updates the score in the UI
     updateScore() {
         document.getElementById('score-count').innerText = `Your total score is ${this.score}`;
     }
 
+    // Attaches event listeners to the game blocks
     attachEventListeners() {
         document.querySelectorAll('.block').forEach(block => {
             block.addEventListener('click', () => {
